@@ -8,6 +8,7 @@ import { ColorDetails } from "@/components/ColorDetails";
 import { PaletteEditor } from "@/components/PaletteEditor";
 import { ColorPalette } from "@/types/palette";
 import { storageUtils } from "@/utils/localStorage";
+import { Logo } from "@/components/Logo";
 
 export default function ColorCraft() {
   const [palettes, setPalettes] =
@@ -154,20 +155,20 @@ export default function ColorCraft() {
 
   const currentPalette = getCurrentPalette();
   const canDelete = palettes.length > 1;
-  const currentExtendedPalette = palettes.find(
-    (p) => p.id === selectedPaletteId || p.darkVariant?.id === selectedPaletteId
-  );
 
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">ColorCraft</h1>
-              <p className="text-gray-600 mt-2">
-                Professional color palette testing and visualization tool
-              </p>
+            <div className="flex items-center">
+              <Logo size="xl" showText={false} />
+              <div className="ml-4">
+                {/* <h1 className="text-3xl font-bold text-gray-900">ColorCraft</h1> */}
+                <p className="text-gray-600 text-sm">
+                  Professional color palette testing and visualization tool
+                </p>
+              </div>
             </div>
 
             <div className="flex items-center gap-4">
