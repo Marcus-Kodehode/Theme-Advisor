@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { colorPalettes, ExtendedColorPalette } from "@/data/palettes";
 import { PaginatedPaletteSelector } from "@/components/PaletteSelector";
 import { LivePreview } from "@/components/LivePreview";
 import { ColorDetails } from "@/components/ColorDetails";
 import { PaletteEditor } from "@/components/PaletteEditor";
 import { ColorPalette } from "@/types/palette";
+import { storageUtils } from "@/utils/localStorage";
 
 export default function ColorCraft() {
   const [palettes, setPalettes] =
@@ -19,11 +20,29 @@ export default function ColorCraft() {
   const [editingPalette, setEditingPalette] =
     useState<ExtendedColorPalette | null>(null);
 
-  // Smart dark mode toggle - switches current palette variant
+  // Load custom palettes from localStorage on component mount
+  useEffect(() => {
+    if (storageUtils.isStorageAvailable()) {
+      const customPalettes = storageUtils.loadCustomPalettes();
+      if (customPalettes.length > 0) {
+        // Combine default palettes with custom palettes
+        setPalettes([...colorPalettes, ...customPalettes]);
+      }
+    }
+  }, []);
+
+  // Save custom palettes to localStorage whenever palettes change
+  useEffect(() => {
+    if (storageUtils.isStorageAvailable()) {
+      storageUtils.saveCustomPalettes(palettes);
+    }
+  }, [palettes]);
+
+  // Dark mode toggle - maintains dark mode state when switching palettes
   const handleDarkModeToggle = (newDarkMode: boolean) => {
     setIsDarkMode(newDarkMode);
 
-    // Auto-switch palette variant
+    // Auto-switch palette variant based on current selection
     const currentBasePaletteId = selectedPaletteId.replace("-dark", "");
     const palette = palettes.find((p) => p.id === currentBasePaletteId);
 
@@ -31,6 +50,22 @@ export default function ColorCraft() {
       if (newDarkMode && palette.darkVariant) {
         setSelectedPaletteId(palette.darkVariant.id);
       } else {
+        setSelectedPaletteId(palette.id);
+      }
+    }
+  };
+
+  // Handle palette selection - respects current dark mode state
+  const handlePaletteSelect = (paletteId: string) => {
+    const basePaletteId = paletteId.replace("-dark", "");
+    const palette = palettes.find((p) => p.id === basePaletteId);
+
+    if (palette) {
+      // If dark mode is enabled and palette has dark variant, select dark variant
+      if (isDarkMode && palette.darkVariant) {
+        setSelectedPaletteId(palette.darkVariant.id);
+      } else {
+        // Otherwise select the base palette
         setSelectedPaletteId(palette.id);
       }
     }
@@ -97,6 +132,14 @@ export default function ColorCraft() {
     );
 
     if (paletteToDelete) {
+      // Remove from localStorage if it's a custom palette
+      if (
+        paletteToDelete.id.startsWith("custom-") &&
+        storageUtils.isStorageAvailable()
+      ) {
+        storageUtils.removeCustomPalette(paletteToDelete.id);
+      }
+
       setPalettes((prev) => prev.filter((p) => p.id !== paletteToDelete.id));
 
       // Select first available palette
@@ -177,7 +220,7 @@ export default function ColorCraft() {
             <PaginatedPaletteSelector
               palettes={palettes}
               selectedId={selectedPaletteId}
-              onSelect={setSelectedPaletteId}
+              onSelect={handlePaletteSelect}
               isDarkMode={isDarkMode}
               onDarkModeToggle={handleDarkModeToggle}
             />
