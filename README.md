@@ -11,7 +11,7 @@
   > Professional color palette testing and visualization tool – built with Next.js and Tailwind CSS
   
   [![Next.js](https://img.shields.io/badge/Next.js-14-000000.svg)](https://nextjs.org)
-  [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8.svg)](https://tailwindcss.com)
+  [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38bdf8.svg)](https://tailwindcss.com)
   [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6.svg)](https://www.typescriptlang.org)
   [![React](https://img.shields.io/badge/React-18-61dafb.svg)](https://react.dev)
   [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
