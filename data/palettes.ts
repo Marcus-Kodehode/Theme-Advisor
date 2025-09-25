@@ -1,10 +1,14 @@
 // ================================
-// data/palettes.ts - Color data
+// data/palettes.ts - Expanded with dark variants
 // ================================
 
 import { ColorPalette } from "@/types/palette";
 
-export const defaultPalettes: ColorPalette[] = [
+export interface ExtendedColorPalette extends ColorPalette {
+  darkVariant?: ColorPalette;
+}
+
+export const colorPalettes: ExtendedColorPalette[] = [
   {
     name: "Ocean Breeze",
     id: "ocean",
@@ -24,6 +28,27 @@ export const defaultPalettes: ColorPalette[] = [
       warning: "#F59E0B",
       error: "#EF4444",
       info: "#0EA5E9",
+    },
+    darkVariant: {
+      name: "Ocean Breeze Dark",
+      id: "ocean-dark",
+      description: "Cool blues and teals - Dark mode",
+      colors: {
+        primary: "#38BDF8",
+        secondary: "#E0F2FE",
+        accent: "#0EA5E9",
+        warm: "#FBBF24",
+        cool: "#22D3EE",
+        background: "#0F172A",
+        surface: "#1E293B",
+        foreground: "#F1F5F9",
+        muted: "#94A3B8",
+        border: "#334155",
+        success: "#34D399",
+        warning: "#FBBF24",
+        error: "#F87171",
+        info: "#60A5FA",
+      },
     },
   },
   {
@@ -46,7 +71,29 @@ export const defaultPalettes: ColorPalette[] = [
       error: "#DC2626",
       info: "#3B82F6",
     },
+    darkVariant: {
+      name: "Sunset Glow Dark",
+      id: "sunset-dark",
+      description: "Warm oranges and reds - Dark mode",
+      colors: {
+        primary: "#FB923C",
+        secondary: "#FED7AA",
+        accent: "#F97316",
+        warm: "#EF4444",
+        cool: "#60A5FA",
+        background: "#1C1917",
+        surface: "#292524",
+        foreground: "#FEF7F0",
+        muted: "#A8A29E",
+        border: "#44403C",
+        success: "#22C55E",
+        warning: "#F59E0B",
+        error: "#EF4444",
+        info: "#3B82F6",
+      },
+    },
   },
+  // Add more palettes...
   {
     name: "Forest Deep",
     id: "forest",
@@ -67,26 +114,26 @@ export const defaultPalettes: ColorPalette[] = [
       error: "#DC2626",
       info: "#0284C7",
     },
-  },
-  {
-    name: "Midnight Purple",
-    id: "midnight",
-    description: "Deep purples and magentas",
-    colors: {
-      primary: "#7C3AED",
-      secondary: "#E9D5FF",
-      accent: "#A855F7",
-      warm: "#EC4899",
-      cool: "#06B6D4",
-      background: "#FAFAFA",
-      surface: "#FFFFFF",
-      foreground: "#581C87",
-      muted: "#6B7280",
-      border: "#C4B5FD",
-      success: "#059669",
-      warning: "#D97706",
-      error: "#DC2626",
-      info: "#0284C7",
+    darkVariant: {
+      name: "Forest Deep Dark",
+      id: "forest-dark",
+      description: "Rich greens and browns - Dark mode",
+      colors: {
+        primary: "#4ADE80",
+        secondary: "#BBF7D0",
+        accent: "#22C55E",
+        warm: "#F59E0B",
+        cool: "#0EA5E9",
+        background: "#052e16",
+        surface: "#14532d",
+        foreground: "#f0fdf4",
+        muted: "#86efac",
+        border: "#166534",
+        success: "#22c55e",
+        warning: "#eab308",
+        error: "#ef4444",
+        info: "#06b6d4",
+      },
     },
   },
 ];
