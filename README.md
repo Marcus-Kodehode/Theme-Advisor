@@ -1,7 +1,9 @@
 <div align="center">
   <p>
-  <img src="/public/images/MBlogo.png" alt="MoBo Logo" width="150" />
-    <img src="/public/images/logo.png" alt="ColorCraft Logo" width="150" />
+    <img src="/public/images/MBlogo.png" alt="Personal Logo" width="150" />
+  </p>
+  <p>
+    <img src="/public/images/logo.png" alt="Theme-Advisor Logo" width="150" />
   </p>
   
   # ColorCraft
