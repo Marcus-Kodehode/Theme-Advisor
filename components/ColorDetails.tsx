@@ -13,7 +13,7 @@ export function ColorDetails({ palette }: ColorDetailsProps) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">
           Color Swatches
         </h2>
         <div className="grid grid-cols-3 gap-4">
@@ -27,7 +27,7 @@ export function ColorDetails({ palette }: ColorDetailsProps) {
       </div>
 
       <div>
-        <h3 className="text-lg font-semibold text-gray-800 mb-3">
+        <h3 className="text-lg font-semibent text-gray-900 mb-3">
           Semantic Colors
         </h3>
         <div className="grid grid-cols-4 gap-3">
